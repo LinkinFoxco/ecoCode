@@ -1,24 +1,28 @@
+/*
+ * ecoCode SonarQube Plugin
+ * Copyright (C) 2020-2021 Snapp' - Université de Pau et des Pays de l'Adour
+ * mailto: contact@ecocode.io
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 package io.ecocode.java.checks.sobriety;
 
-import io.ecocode.java.checks.helpers.constant.FlagOnMethodCheck;
 import org.sonar.check.Rule;
 
 @Rule(key = "ESOB011", name = "ecocodeVibrationFree")
-public class VibrationFreeRule extends FlagOnMethodCheck {
-    /**
-     * Constructor to configure the rule on a given class and method.
-     *
-     * @param methodName           name of the method to check
-     * @param methodOwnerType      name of the type that own the method
-     * @param constantValueToCheck the constant value to check
-     * @param paramPositions       the position(s) of the argument on the method to check
-     */
-    protected VibrationFreeRule(String methodName, String methodOwnerType, int constantValueToCheck, int... paramPositions) {
-        super(methodName, methodOwnerType, constantValueToCheck, paramPositions);
-    }
+public class VibrationFreeRule {
 
-    @Override
-    public String getMessage() {
-        return "Prefer not using VIBRATOR_SERVICE in API 26";
-    }
 }

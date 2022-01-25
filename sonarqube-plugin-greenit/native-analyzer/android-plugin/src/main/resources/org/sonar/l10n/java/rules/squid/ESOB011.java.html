@@ -4,9 +4,13 @@
     its usage must be discouraged, especially since its added value is not clear.</p>
 <h2>Noncompliant Code Example</h2>
 <pre>
-    Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-    long[] pattern = {0, 100, 1000};
-    v.vibrate(pattern, 0);
+API 26:
+  Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+  v.vibrate(400);
+API 31:
+  VibratorManager vm = (VibratorManager) getSystemService(Context.VIBRATOR_MANAGER_SERVICE)
+  Vibrator v = (Vibrator) vm.getDefaultVibrator();
+  v.vibrate(400);
 </pre>
 <h2>Compliant Code Example</h2>
 <pre>
