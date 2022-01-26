@@ -20,19 +20,42 @@
 
 package io.ecocode.java.checks.sobriety;
 
-import io.ecocode.java.checks.helpers.constant.StringFlagOnMethodCheck;
+import io.ecocode.java.checks.helpers.constant.StringArgumentValueOnMethodCheck;
 import org.sonar.check.Rule;
+import org.sonar.plugins.java.api.tree.Tree;
+
+import java.util.Optional;
 
 @Rule(key = "ESOB011", name = "ecocodeVibrationFree")
-public class VibrationFreeRule extends StringFlagOnMethodCheck {
-  
-  public VibrationFreeRule(String value) {
-    super("getSystemService", "android.content.Context", value, 0);
-  }
+public class VibrationFreeRule extends StringArgumentValueOnMethodCheck {
+    private final String type;
 
-  @Override
-  public String getMessage() {
-    return "Prefer not using VIBRATOR_SENSOR (API 26) or VIBRATOR_MANAGER_SERVICE (API 31)";
-  }
+    public VibrationFreeRule(String valueToCheck) {
+        super("getSystemService", "android.content.Context", valueToCheck, 0);
+        type = valueToCheck;
+    }
+
+    @Override
+    public String getMessage() {
+        String methodName;
+        switch (type) {
+            case "vibrator":
+                methodName = "Context.VIBRATOR_SERVICE";
+                break;
+            case "vibrator_manager":
+                methodName = "Context.VIBRATOR_MANAGER_SERVICE";
+                break;
+            default:
+                return "";
+        }
+        return "Prefer to avoid using getSystemService(" + methodName + ") to use less energy.";
+    }
+
+    @Override
+    protected void checkConstantValue(Optional<Object> optionalConstantValue, Tree reportTree, String constantValueToCheck) {
+        if (optionalConstantValue.isPresent() && ((String) optionalConstantValue.get()).equals(constantValueToCheck)) {
+            reportIssue(reportTree, getMessage());
+        }
+    }
 
 }

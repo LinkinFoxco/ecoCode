@@ -8,10 +8,7 @@ public class VibrationFreeRuleTest {
     @Test
     public void verify() {
         JavaCheckVerifier.newVerifier().onFile("src/test/files/sobriety/VibrationFreeCheck.java")
-                .withCheck(new VibrationFreeRule("vibrator"))
-                .verifyIssues();
-        JavaCheckVerifier.newVerifier().onFile("src/test/files/sobriety/VibrationFreeCheck.java")
-                .withCheck(new VibrationFreeRule("vibrator_manager"))
+                .withChecks(new VibrationFreeRule("vibrator"),new VibrationFreeRule("vibrator_manager"))
                 .verifyIssues();
     }
 

@@ -91,11 +91,12 @@ public abstract class StringArgumentValueOnMethodCheck extends IssuableSubscript
     private void handleArgument(ExpressionTree argument) {
         if (argument.is(Tree.Kind.IDENTIFIER)) {
             IdentifierTree expressionTree = (IdentifierTree) argument;
-            if (expressionTree.symbolType().isPrimitive()) {
+            if (expressionTree.symbolType().isSubtypeOf("java.lang.String")) {
                 checkConstantValue(expressionTree.asConstant(), expressionTree, constantValueToCheck);
             }
-        } else if (argument.is(Tree.Kind.STRING_LITERAL)
-                || argument.is(Tree.Kind.CHAR_LITERAL)) {
+        } else if (argument.is(Tree.Kind.ARRAY_TYPE)
+                || argument.is(Tree.Kind.CHAR_LITERAL)
+                || argument.is(Tree.Kind.STRING_LITERAL)) {
             checkConstantValue(argument.asConstant(), argument, constantValueToCheck);
         } else {
             checkArgumentComplexType(argument);
