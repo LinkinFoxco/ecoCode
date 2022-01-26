@@ -20,9 +20,19 @@
 
 package io.ecocode.java.checks.sobriety;
 
+import io.ecocode.java.checks.helpers.constant.StringFlagOnMethodCheck;
 import org.sonar.check.Rule;
 
 @Rule(key = "ESOB011", name = "ecocodeVibrationFree")
-public class VibrationFreeRule {
+public class VibrationFreeRule extends StringFlagOnMethodCheck {
+  
+  public VibrationFreeRule(String value) {
+    super("getSystemService", "android.content.Context", value, 0);
+  }
+
+  @Override
+  public String getMessage() {
+    return "Prefer not using VIBRATOR_SENSOR (API 26) or VIBRATOR_MANAGER_SERVICE (API 31)";
+  }
 
 }
