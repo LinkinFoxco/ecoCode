@@ -8,12 +8,13 @@ public final class Context {
         Service service = (Service) getSystemService(((String) Sensor.VIBRATOR_MANAGER_SERVICE));// Noncompliant {{Prefer to avoid using getSystemService(Context.VIBRATOR_MANAGER_SERVICE) to use less energy.}}
         Service service = (Service) getSystemService("vibrator_manager");// Noncompliant {{Prefer to avoid using getSystemService(Context.VIBRATOR_MANAGER_SERVICE) to use less energy.}}
     }
-    private Service getSystemService(String string) { return null; }
+
+    private Service getSystemService(String string) {
+        return null;
+    }
 
     public final class Sensor {
         public static final String VIBRATOR_MANAGER_SERVICE = "vibrator_manager";
         public static final String VIBRATOR_SERVICE = "vibrator";
     }
 }
-
-

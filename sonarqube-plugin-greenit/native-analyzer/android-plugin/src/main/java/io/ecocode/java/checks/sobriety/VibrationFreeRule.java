@@ -30,13 +30,19 @@ import java.util.Optional;
 public class VibrationFreeRule extends StringArgumentValueOnMethodCheck {
     private final String type;
 
-    public VibrationFreeRule(String valueToCheck) {
-        super("getSystemService", "android.content.Context", valueToCheck, 0);
+    public VibrationFreeRule(String methodOwner, String valueToCheck) {
+        super("getSystemService", methodOwner, valueToCheck, 0);
         type = valueToCheck;
+    }
+
+    public VibrationFreeRule() {
+        super("", "", "", 0);
+        type = "";
     }
 
     @Override
     public String getMessage() {
+
         String methodName;
         switch (type) {
             case "vibrator":
