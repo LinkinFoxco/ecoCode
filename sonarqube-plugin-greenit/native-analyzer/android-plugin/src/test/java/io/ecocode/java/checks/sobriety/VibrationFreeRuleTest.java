@@ -9,14 +9,8 @@ public class VibrationFreeRuleTest {
     @Test
     public void verify() {
 
-        JavaCheckVerifier.newVerifier().onFile("src/test/files/sobriety/VibrationFreeCheckContext.java")
-                .withChecks(new VibrationFreeRule("android.content.Context", "vibrator"),
-                        new VibrationFreeRule("android.content.Context", "vibrator_manager"))
-                .verifyIssues();
-
-        JavaCheckVerifier.newVerifier().onFile("src/test/files/sobriety/VibrationFreeCheckActivity.java")
-                .withChecks(new VibrationFreeRule("android.app.Activity", "vibrator"),
-                        new VibrationFreeRule("android.app.Activity", "vibrator_manager"))
+        JavaCheckVerifier.newVerifier().onFiles("src/test/files/sobriety/VibrationFreeCheckContext.java") // "src/test/files/sobriety/VibrationFreeCheckActivity.java"
+                .withChecks(new VibrationFreeRule())
                 .verifyIssues();
     }
 
