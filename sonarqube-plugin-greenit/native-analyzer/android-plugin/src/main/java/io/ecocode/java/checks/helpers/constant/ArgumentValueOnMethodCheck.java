@@ -27,9 +27,9 @@ import org.sonar.plugins.java.api.tree.*;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class StringArgumentValueOnMethodCheck extends IssuableSubscriptionVisitor  {
+public abstract class ArgumentValueOnMethodCheck extends IssuableSubscriptionVisitor  {
 
-    private final String constantValueToCheck;
+    private final Object constantValueToCheck;
     private int[] paramPositions;
     private final MethodMatchers matcher;
 
@@ -41,7 +41,7 @@ public abstract class StringArgumentValueOnMethodCheck extends IssuableSubscript
      * @param constantValueToCheck       the constant value to check
      * @param paramPositions  the position(s) of the argument on the method to check
      */
-    protected StringArgumentValueOnMethodCheck(String methodName, String methodOwnerType, String constantValueToCheck, int... paramPositions) {
+    protected ArgumentValueOnMethodCheck(String methodName, String methodOwnerType, Object constantValueToCheck, int... paramPositions) {
         super();
         this.constantValueToCheck = constantValueToCheck;
         this.paramPositions = paramPositions;
@@ -62,7 +62,7 @@ public abstract class StringArgumentValueOnMethodCheck extends IssuableSubscript
      * @param reportTree the tree where the issue will be reported
      * @param constantValueToCheck the value to use to check the argument
      */
-    protected abstract void checkConstantValue(Optional<Object> optionalConstantValue, Tree reportTree, String constantValueToCheck);
+    protected abstract void checkConstantValue(Optional<Object> optionalConstantValue, Tree reportTree, Object constantValueToCheck);
 
     @Override
     public List<Tree.Kind> nodesToVisit() {
@@ -91,12 +91,17 @@ public abstract class StringArgumentValueOnMethodCheck extends IssuableSubscript
     private void handleArgument(ExpressionTree argument) {
         if (argument.is(Tree.Kind.IDENTIFIER)) {
             IdentifierTree expressionTree = (IdentifierTree) argument;
-            if (expressionTree.symbolType().isSubtypeOf("java.lang.String")) {
+            if (expressionTree.symbolType().isSubtypeOf("java.lang.String")
+                    || expressionTree.symbolType().isPrimitive()) {
                 checkConstantValue(expressionTree.asConstant(), expressionTree, constantValueToCheck);
             }
         } else if (argument.is(Tree.Kind.ARRAY_TYPE)
                 || argument.is(Tree.Kind.CHAR_LITERAL)
-                || argument.is(Tree.Kind.STRING_LITERAL)) {
+                || argument.is(Tree.Kind.STRING_LITERAL)
+                ||argument.is(Tree.Kind.INT_LITERAL)
+                || argument.is(Tree.Kind.LONG_LITERAL)
+                || argument.is(Tree.Kind.FLOAT_LITERAL)
+                || argument.is(Tree.Kind.DOUBLE_LITERAL)) {
             checkConstantValue(argument.asConstant(), argument, constantValueToCheck);
         } else {
             checkArgumentComplexType(argument);
