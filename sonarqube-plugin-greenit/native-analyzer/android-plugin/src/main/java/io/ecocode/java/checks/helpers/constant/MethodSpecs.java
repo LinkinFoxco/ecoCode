@@ -20,20 +20,38 @@
 package io.ecocode.java.checks.helpers.constant;
 
 public class MethodSpecs {
-  private final String methodOwner;
-  private final String methodName;
-  private final Object constantValueToCheck;
-  private final int optionnalPos;
+    private final String methodOwner;
+    private final String methodName;
+    private final Object constantValueToCheck;
+    private final int[] paramPositions;
 
-  public MethodSpecs(String methOwner, String methName, Object constant, int optionPos){
-    this.methodOwner = methOwner;
-    this.methodName = methName;
-    this.constantValueToCheck = constant;
-    this.optionnalPos = optionPos;
-  }
+    public MethodSpecs(String methName, String methOwner, Object constant, int... optionPos) {
+        this.methodOwner = methOwner;
+        this.methodName = methName;
+        this.constantValueToCheck = constant;
+        this.paramPositions = optionPos;
+    }
 
-  public String getMethodOwner() { return methodOwner; }
-  public String getMethodName() { return methodName; }
-  public Object getConstantValueToCheck() { return constantValueToCheck; }
-  public int getOptionnalPos() { return optionnalPos; }
+    public MethodSpecs(String methName, String methOwner, Object constant) {
+        this.methodOwner = methOwner;
+        this.methodName = methName;
+        this.constantValueToCheck = constant;
+        this.paramPositions = new int[]{0};
+    }
+
+    public String getMethodOwner() {
+        return methodOwner;
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public Object getConstantValueToCheck() {
+        return constantValueToCheck;
+    }
+
+    public int[] getParamsPositions() {
+        return paramPositions;
+    }
 }

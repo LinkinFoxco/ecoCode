@@ -21,6 +21,7 @@
 package io.ecocode.java.checks.sobriety;
 
 import io.ecocode.java.checks.helpers.constant.ArgumentValueOnMethodCheck;
+import io.ecocode.java.checks.helpers.constant.MethodSpecs;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.tree.Tree;
 
@@ -28,18 +29,23 @@ import java.util.Optional;
 
 @Rule(key = "ESOB011", name = "ecocodeVibrationFree")
 public class VibrationFreeRule extends ArgumentValueOnMethodCheck {
-    private final String type;
+
+    protected String currentValue;
 
     public VibrationFreeRule() {
-        super("getSystemService", "android.content.Context", "vibrator", 0);
-        type = "vibrator";
+        super(new MethodSpecs[]{
+                new MethodSpecs("getSystemService", "android.content.Context", "vibrator", 0),
+                new MethodSpecs("getSystemService", "android.content.Context", "vibrator_manager", 0),
+                new MethodSpecs("getSystemService", "android.app.Activity", "vibrator", 0),
+                new MethodSpecs("getSystemService", "android.app.Activity", "vibrator_manager", 0),
+        });
     }
 
     @Override
     public String getMessage() {
 
         String methodName;
-        switch (type) {
+        switch (currentValue) {
             case "vibrator":
                 methodName = "Context.VIBRATOR_SERVICE";
                 break;
@@ -55,6 +61,7 @@ public class VibrationFreeRule extends ArgumentValueOnMethodCheck {
     @Override
     protected void checkConstantValue(Optional<Object> optionalConstantValue, Tree reportTree, Object constantValueToCheck) {
         if (optionalConstantValue.isPresent() && ((String) optionalConstantValue.get()).equals((String) constantValueToCheck)) {
+            currentValue = (String) constantValueToCheck;
             reportIssue(reportTree, getMessage());
         }
     }
