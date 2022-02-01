@@ -19,6 +19,7 @@
  */
 package io.ecocode.java.checks.helpers.constant;
 
+import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.Tree;
 
 import java.util.Optional;
@@ -49,7 +50,7 @@ public abstract class ConstantOnMethodCheck extends ArgumentValueOnMethodCheck {
      */
     @Override
     protected void checkConstantValue(Optional<Object> optionalConstantValue, Tree reportTree, Object constantValueToCheck) {
-        if ((optionalConstantValue.isPresent() && (((Number) optionalConstantValue.get()) != ((Number) constantValueToCheck)))) {
+        if ((optionalConstantValue.isPresent() && (((Number) optionalConstantValue.get()).intValue() != ((int) constantValueToCheck)))) {
             reportIssue(reportTree, getMessage());
         }
     }
