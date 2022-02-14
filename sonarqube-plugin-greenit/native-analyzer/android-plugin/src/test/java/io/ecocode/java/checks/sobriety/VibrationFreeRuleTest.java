@@ -9,15 +9,9 @@ public class VibrationFreeRuleTest {
     @Test
     public void verify() {
 
-        JavaCheckVerifier.newVerifier().onFiles("src/test/files/sobriety/VibrationFreeCheckContext.java","src/test/files/sobriety/VibrationFreeCheckActivity.java") // "src/test/files/sobriety/VibrationFreeCheckActivity.java"
+        JavaCheckVerifier.newVerifier().onFiles("src/test/files/sobriety/VibrationFreeCheckContext.java", "src/test/files/sobriety/VibrationFreeCheckActivity.java")
                 .withChecks(new VibrationFreeRule(), new VibrationFreeRule())
                 .verifyIssues();
-        /*JavaCheckVerifier.newVerifier().onFile("src/test/files/sobriety/VibrationFreeCheckContext.java") // "src/test/files/sobriety/VibrationFreeCheckActivity.java"
-                .withCheck(new VibrationFreeRule())
-                .verifyIssues();
-        JavaCheckVerifier.newVerifier().onFile("src/test/files/sobriety/VibrationFreeCheckActivity.java") // "src/test/files/sobriety/VibrationFreeCheckActivity.java"
-                .withCheck(new VibrationFreeRule())
-                .verifyIssues();*/
     }
 
 }
