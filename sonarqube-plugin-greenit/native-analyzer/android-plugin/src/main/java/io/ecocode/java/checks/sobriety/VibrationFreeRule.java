@@ -37,30 +37,18 @@ public class VibrationFreeRule extends ArgumentValueOnMethodCheck {
                 new MethodSpecs("getSystemService", "android.content.Context", "vibrator", 0),
                 new MethodSpecs("getSystemService", "android.content.Context", "vibrator_manager", 0),
                 new MethodSpecs("getSystemService", "android.app.Activity", "vibrator", 0),
-                new MethodSpecs("getSystemService", "android.app.Activity", "vibrator_manager", 0),
+                new MethodSpecs("getSystemService", "android.app.Activity", "vibrator_manager", 0)
         });
     }
 
     @Override
     public String getMessage() {
-
-        String methodName;
-        switch (currentValue) {
-            case "vibrator":
-                methodName = "Context.VIBRATOR_SERVICE";
-                break;
-            case "vibrator_manager":
-                methodName = "Context.VIBRATOR_MANAGER_SERVICE";
-                break;
-            default:
-                return "";
-        }
-        return "Prefer to avoid using getSystemService(" + methodName + ") to use less energy.";
+        return "Avoid using the device vibrator to use less energy.";
     }
 
     @Override
     protected void checkConstantValue(Optional<Object> optionalConstantValue, Tree reportTree, Object constantValueToCheck) {
-        if (optionalConstantValue.isPresent() && ((String) optionalConstantValue.get()).equals((String) constantValueToCheck)) {
+        if (optionalConstantValue.isPresent() && optionalConstantValue.get().equals(constantValueToCheck)) {
             currentValue = (String) constantValueToCheck;
             reportIssue(reportTree, getMessage());
         }
