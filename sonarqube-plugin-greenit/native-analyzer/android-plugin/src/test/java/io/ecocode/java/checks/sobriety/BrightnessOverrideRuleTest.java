@@ -7,8 +7,7 @@ public class BrightnessOverrideRuleTest {
 
     @Test
     public void verify() {
-        JavaCheckVerifier.newVerifier()
-                .onFile("src/test/files/sobriety/BrightnessOverrideCheck.java")
+        JavaCheckVerifier.newVerifier().onFile("src/test/files/sobriety/BrightnessOverrideCheck.java")
                 .withCheck(new BrightnessOverrideRule())
                 .verifyIssues();
     }

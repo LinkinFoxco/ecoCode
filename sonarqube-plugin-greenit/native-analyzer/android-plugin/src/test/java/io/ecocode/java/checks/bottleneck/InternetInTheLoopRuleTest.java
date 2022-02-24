@@ -7,8 +7,7 @@ public class InternetInTheLoopRuleTest {
 
     @Test
     public void verifyLoop() {
-        JavaCheckVerifier.newVerifier()
-                .onFile("src/test/files/bottleneck/InternetInTheLoopCheck.java")
+        JavaCheckVerifier.newVerifier().onFile("src/test/files/bottleneck/InternetInTheLoopCheck.java")
                 .withCheck(new InternetInTheLoopRule())
                 .verifyIssues();
     }

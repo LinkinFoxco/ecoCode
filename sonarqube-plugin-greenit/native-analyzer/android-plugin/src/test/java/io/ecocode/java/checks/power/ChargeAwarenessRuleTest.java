@@ -7,8 +7,7 @@ public class ChargeAwarenessRuleTest {
 
     @Test
     public void verify() {
-        JavaCheckVerifier.newVerifier()
-                .onFile("src/test/files/power/ChargeAwarenessCheck.java")
+        JavaCheckVerifier.newVerifier().onFile("src/test/files/power/ChargeAwarenessCheck.java")
                 .withCheck(new ChargeAwarenessRule())
                 .verifyIssues();
     }

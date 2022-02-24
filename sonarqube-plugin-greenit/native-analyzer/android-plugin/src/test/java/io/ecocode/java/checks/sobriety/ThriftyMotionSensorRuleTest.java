@@ -1,6 +1,5 @@
 package io.ecocode.java.checks.sobriety;
 
-import io.ecocode.java.checks.sobriety.ThriftyMotionSensorRule;
 import org.junit.Test;
 import org.sonar.java.checks.verifier.JavaCheckVerifier;
 
