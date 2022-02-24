@@ -19,7 +19,6 @@
  */
 package io.ecocode.java.checks.helpers.constant;
 
-import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.Tree;
 
 import java.util.Optional;
@@ -30,7 +29,7 @@ import java.util.Optional;
 public abstract class ConstantOnMethodCheck extends ArgumentValueOnMethodCheck {
 
     /**
-     * Constructor to configure the rule on a given class and method.
+     * Constructor to configure the rule on 1 given class and method.
      *
      * @param methodName           name of the method to check
      * @param methodOwnerType      name of the type that own the method
@@ -45,8 +44,8 @@ public abstract class ConstantOnMethodCheck extends ArgumentValueOnMethodCheck {
      * In this case, we report an issue if the argument value is different from a given value.
      *
      * @param optionalConstantValue the argument value of the method as an optional value
-     * @param reportTree the tree where the issue will be reported
-     * @param constantValueToCheck the value to use to check the argument
+     * @param reportTree            the tree where the issue will be reported
+     * @param constantValueToCheck  the value to use to check the argument
      */
     @Override
     protected void checkConstantValue(Optional<Object> optionalConstantValue, Tree reportTree, Object constantValueToCheck) {
