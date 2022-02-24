@@ -13,22 +13,27 @@ public final class LocationManager {
                 0,// Noncompliant {{Location updates should be done with a time greater than 0.}}
                 0,// Noncompliant {{Location updates should be done with a distance interval greater than 0.}}
                 null);
+
         locationManager.requestLocationUpdates("",
                 0,// Noncompliant {{Location updates should be done with a time greater than 0.}}
                 0,// Noncompliant {{Location updates should be done with a distance interval greater than 0.}}
                 null);
+
         locationManager.requestLocationUpdates(null,
                 0,// Noncompliant {{Location updates should be done with a time greater than 0.}}
                 0,// Noncompliant {{Location updates should be done with a distance interval greater than 0.}}
                 null);
+
         locationManager.requestLocationUpdates("",
                 0.f, // Noncompliant {{Location updates should be done with a time greater than 0.}}
                 0.f,// Noncompliant {{Location updates should be done with a distance interval greater than 0.}}
                 null);
+
         locationManager.requestLocationUpdates("",
                 0L, // Noncompliant {{Location updates should be done with a time greater than 0.}}
                 0L,// Noncompliant {{Location updates should be done with a distance interval greater than 0.}}
                 null);
+
         locationManager.requestLocationUpdates(0,// Noncompliant {{Location updates should be done with a time greater than 0.}}
                 0,// Noncompliant {{Location updates should be done with a distance interval greater than 0.}}
                 null,
@@ -39,9 +44,9 @@ public final class LocationManager {
                 null,
                 null);
 
-        locationManager.requestLocationUpdates(12147483647,12.15487265142556,null,null);
-        locationManager.requestLocationUpdates(1L,12.f,null,null);
-        locationManager.requestLocationUpdates(1,12,null,null);
+        locationManager.requestLocationUpdates(12147483647, 12.15487265142556, null, null);
+        locationManager.requestLocationUpdates(1L, 12.f, null, null);
+        locationManager.requestLocationUpdates(1, 12, null, null);
         locationManager.requestLocationUpdates(null, null, null);
     }
 
@@ -54,7 +59,6 @@ public final class LocationManager {
 
     public void requestLocationUpdates(@NonNull String provider, long minTime, float minDistance,
                                        @NonNull LocationListener listener, @Nullable Looper looper) {
-
     }
 
     public void requestLocationUpdates(
@@ -68,7 +72,6 @@ public final class LocationManager {
     public void requestLocationUpdates(long minTime, float minDistance,
                                        @NonNull Criteria criteria, @NonNull LocationListener listener,
                                        @Nullable Looper looper) {
-
     }
 
     public void requestLocationUpdates(
@@ -77,33 +80,30 @@ public final class LocationManager {
             @NonNull Criteria criteria,
             @NonNull @CallbackExecutor Executor executor,
             @NonNull LocationListener listener) {
-
     }
 
     public void requestLocationUpdates(@NonNull String provider, long minTime, float minDistance,
                                        @NonNull PendingIntent pendingIntent) {
-
     }
+
     public void requestLocationUpdates(long minTime, float minDistance,
                                        @NonNull Criteria criteria, @NonNull PendingIntent pendingIntent) {
-
     }
+
     public void requestLocationUpdates(
             @Nullable LocationRequest locationRequest,
             @NonNull LocationListener listener,
             @Nullable Looper looper) {
-
     }
 
     public void requestLocationUpdates(
             @Nullable LocationRequest locationRequest,
             @NonNull @CallbackExecutor Executor executor,
             @NonNull LocationListener listener) {
-
     }
+
     public void requestLocationUpdates(
             @Nullable LocationRequest locationRequest,
             @NonNull PendingIntent pendingIntent) {
-
     }
 }

@@ -1,10 +1,10 @@
 package android.app;
 
-public final class NotificationChannel{
+public final class NotificationChannel {
 
-    public void test(){
+    public void test() {
         NotificationChannel notifManag = new NotificationChannel();
-        notifManag.setVibrationPattern(new long[] {1000, 1000, 1000, 1000, 1000});// Noncompliant {{Avoid using vibration or sound when notifying the users to use less energy.}}
+        notifManag.setVibrationPattern(new long[]{1000, 1000, 1000, 1000, 1000});// Noncompliant {{Avoid using vibration or sound when notifying the users to use less energy.}}
         notifManag.setVibrationPattern(null);
         notifManag.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION), Notification.AUDIO_ATTRIBUTES_DEFAULT);// Noncompliant {{Avoid using vibration or sound when notifying the users to use less energy.}}
         notifManag.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION), null);// Noncompliant {{Avoid using vibration or sound when notifying the users to use less energy.}}
