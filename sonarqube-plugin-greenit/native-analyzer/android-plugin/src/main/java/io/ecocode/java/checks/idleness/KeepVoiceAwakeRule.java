@@ -20,6 +20,7 @@
 package io.ecocode.java.checks.idleness;
 
 import com.google.common.collect.ImmutableList;
+import io.ecocode.java.checks.helpers.ArgumentComplexTypeSubscriptionVisitor;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonar.check.Rule;
@@ -41,7 +42,7 @@ import java.util.Optional;
  * Otherwise report an issue on the new class nodes.
  */
 @Rule(key = "EIDL009", name = "ecocodeKeepVoiceAwake")
-public class KeepVoiceAwakeRule extends IssuableSubscriptionVisitor {
+public class KeepVoiceAwakeRule extends ArgumentComplexTypeSubscriptionVisitor {
 
     private static final Logger LOG = Loggers.get(KeepVoiceAwakeRule.class);
 
@@ -125,27 +126,7 @@ public class KeepVoiceAwakeRule extends IssuableSubscriptionVisitor {
         } else if (argument.is(Tree.Kind.BOOLEAN_LITERAL)) {
             checkArgumentIsTrue(argument,argument.asConstant());
         } else {
-            checkArgumentComplexType(argument);
+            handleArgument((ExpressionTree) checkArgumentComplexType(argument));
         }
-    }
-
-    private void checkArgumentComplexType(ExpressionTree argument) {
-        switch (argument.kind()) {
-            case MEMBER_SELECT:
-                MemberSelectExpressionTree mset = (MemberSelectExpressionTree) argument;
-                handleArgument(mset.identifier());
-                break;
-            case TYPE_CAST:
-                TypeCastTree tctree = (TypeCastTree) argument;
-                handleArgument(tctree.expression());
-                break;
-            case PARENTHESIZED_EXPRESSION:
-                ParenthesizedTree partzt = (ParenthesizedTree) argument;
-                handleArgument(partzt.expression());
-                break;
-            default:
-                break;
-        }
-
     }
 }
