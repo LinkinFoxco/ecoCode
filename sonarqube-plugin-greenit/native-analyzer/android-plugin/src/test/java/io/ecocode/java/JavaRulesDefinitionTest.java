@@ -54,17 +54,17 @@ public class JavaRulesDefinitionTest {
     assertThat(sensorCoalesceRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
     assertThat(sensorCoalesceRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
-    Rule rule = repository.rule("EOPT001");
-    assertThat(rule).isNotNull();
-    assertThat(rule.name()).isEqualTo("Optimized API: Fused Location");
-    assertThat(rule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(rule.type()).isEqualTo(RuleType.CODE_SMELL);
+    Rule internetInTheLoopRule = repository.rule("EBOT001");
+    assertThat(internetInTheLoopRule).isNotNull();
+    assertThat(internetInTheLoopRule.name()).isEqualTo("Bottleneck: Internet In The Loop");
+    assertThat(internetInTheLoopRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
+    assertThat(internetInTheLoopRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
-    Rule bleRule = repository.rule("EOPT002");
-    assertThat(bleRule).isNotNull();
-    assertThat(bleRule.name()).isEqualTo("Optimized API: Bluetooth Low-Energy");
-    assertThat(bleRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(bleRule.type()).isEqualTo(RuleType.CODE_SMELL);
+    Rule wifiMulticastLockRule = repository.rule("EBOT002");
+    assertThat(wifiMulticastLockRule).isNotNull();
+    assertThat(wifiMulticastLockRule.name()).isEqualTo("Bottleneck: Wifi Multicast Lock");
+    assertThat(wifiMulticastLockRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
+    assertThat(wifiMulticastLockRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
     Rule keepScreenOnAddFlagRule = repository.rule("EIDL001");
     assertThat(keepScreenOnAddFlagRule).isNotNull();
@@ -78,35 +78,35 @@ public class JavaRulesDefinitionTest {
     assertThat(keepScreenOnSetFlagRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
     assertThat(keepScreenOnSetFlagRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
-    Rule brightnessRule = repository.rule("ESOB002");
-    assertThat(brightnessRule).isNotNull();
-    assertThat(brightnessRule.name()).isEqualTo("Sobriety: Brightness Override");
-    assertThat(brightnessRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(brightnessRule.type()).isEqualTo(RuleType.CODE_SMELL);
-
-    Rule internetInTheLoopRule = repository.rule("EBOT001");
-    assertThat(internetInTheLoopRule).isNotNull();
-    assertThat(internetInTheLoopRule.name()).isEqualTo("Bottleneck: Internet In The Loop");
-    assertThat(internetInTheLoopRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(internetInTheLoopRule.type()).isEqualTo(RuleType.CODE_SMELL);
-
     Rule keepCpuOnRule = repository.rule("EIDL004");
     assertThat(keepCpuOnRule).isNotNull();
     assertThat(keepCpuOnRule.name()).isEqualTo("Idleness: Keep Cpu On");
     assertThat(keepCpuOnRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
     assertThat(keepCpuOnRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
-    Rule thriftyMotionSensorRule = repository.rule("ESOB001");
-    assertThat(thriftyMotionSensorRule).isNotNull();
-    assertThat(thriftyMotionSensorRule.name()).isEqualTo("Sobriety: Thrifty Motion Sensor");
-    assertThat(thriftyMotionSensorRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(thriftyMotionSensorRule.type()).isEqualTo(RuleType.CODE_SMELL);
+    Rule durableWakeLockRule = repository.rule("EIDL006");
+    assertThat(durableWakeLockRule).isNotNull();
+    assertThat(durableWakeLockRule.name()).isEqualTo("Idleness: Durable Wake Lock");
+    assertThat(durableWakeLockRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
+    assertThat(durableWakeLockRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
-    Rule wifiMulticastLockRule = repository.rule("EBOT002");
-    assertThat(wifiMulticastLockRule).isNotNull();
-    assertThat(wifiMulticastLockRule.name()).isEqualTo("Bottleneck: Wifi Multicast Lock");
-    assertThat(wifiMulticastLockRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(wifiMulticastLockRule.type()).isEqualTo(RuleType.CODE_SMELL);
+    Rule rigidAlarmSetRepeatingRule = repository.rule("EIDL007");
+    assertThat(rigidAlarmSetRepeatingRule).isNotNull();
+    assertThat(rigidAlarmSetRepeatingRule.name()).isEqualTo("Idleness: Rigid Alarm");
+    assertThat(rigidAlarmSetRepeatingRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
+    assertThat(rigidAlarmSetRepeatingRule.type()).isEqualTo(RuleType.CODE_SMELL);
+
+    Rule continuousRenderingRule = repository.rule("EIDL008");
+    assertThat(continuousRenderingRule).isNotNull();
+    assertThat(continuousRenderingRule.name()).isEqualTo("Idleness: Continuous Rendering");
+    assertThat(continuousRenderingRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
+    assertThat(continuousRenderingRule.type()).isEqualTo(RuleType.CODE_SMELL);
+
+    Rule keepVoiceAwakeRule = repository.rule("EIDL009");
+    assertThat(keepVoiceAwakeRule).isNotNull();
+    assertThat(keepVoiceAwakeRule.name()).isEqualTo("Idleness: Keep Voice Awake");
+    assertThat(keepVoiceAwakeRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
+    assertThat(keepVoiceAwakeRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
     Rule cameraLeakRule = repository.rule("ELEA002");
     assertThat(cameraLeakRule).isNotNull();
@@ -138,29 +138,35 @@ public class JavaRulesDefinitionTest {
     assertThat(mediaLeakMediaPlayerLeakRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
     assertThat(mediaLeakMediaPlayerLeakRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
-    Rule durableWakeLockRule = repository.rule("EIDL006");
-    assertThat(durableWakeLockRule).isNotNull();
-    assertThat(durableWakeLockRule.name()).isEqualTo("Idleness: Durable Wake Lock");
-    assertThat(durableWakeLockRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(durableWakeLockRule.type()).isEqualTo(RuleType.CODE_SMELL);
+    Rule fusedLocationRule = repository.rule("EOPT001");
+    assertThat(fusedLocationRule).isNotNull();
+    assertThat(fusedLocationRule.name()).isEqualTo("Optimized API: Fused Location");
+    assertThat(fusedLocationRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
+    assertThat(fusedLocationRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
-    Rule rigidAlarmSetRepeatingRule = repository.rule("EIDL007");
-    assertThat(rigidAlarmSetRepeatingRule).isNotNull();
-    assertThat(rigidAlarmSetRepeatingRule.name()).isEqualTo("Idleness: Rigid Alarm");
-    assertThat(rigidAlarmSetRepeatingRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(rigidAlarmSetRepeatingRule.type()).isEqualTo(RuleType.CODE_SMELL);
+    Rule bluetoothLowEnergyRule = repository.rule("EOPT002");
+    assertThat(bluetoothLowEnergyRule).isNotNull();
+    assertThat(bluetoothLowEnergyRule.name()).isEqualTo("Optimized API: Bluetooth Low-Energy");
+    assertThat(bluetoothLowEnergyRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
+    assertThat(bluetoothLowEnergyRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
-    Rule continuousRenderingRule = repository.rule("EIDL008");
-    assertThat(continuousRenderingRule).isNotNull();
-    assertThat(continuousRenderingRule.name()).isEqualTo("Idleness: Continuous Rendering");
-    assertThat(continuousRenderingRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(continuousRenderingRule.type()).isEqualTo(RuleType.CODE_SMELL);
+    Rule chargeAwarenessRule = repository.rule("EPOW004");
+    assertThat(chargeAwarenessRule).isNotNull();
+    assertThat(chargeAwarenessRule.name()).isEqualTo("Power: Charge Awareness");
+    assertThat(chargeAwarenessRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
+    assertThat(chargeAwarenessRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
-    Rule keepVoiceAwakeRule = repository.rule("EIDL009");
-    assertThat(keepVoiceAwakeRule).isNotNull();
-    assertThat(keepVoiceAwakeRule.name()).isEqualTo("Idleness: Keep Voice Awake");
-    assertThat(keepVoiceAwakeRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(keepVoiceAwakeRule.type()).isEqualTo(RuleType.CODE_SMELL);
+    Rule thriftyMotionSensorRule = repository.rule("ESOB001");
+    assertThat(thriftyMotionSensorRule).isNotNull();
+    assertThat(thriftyMotionSensorRule.name()).isEqualTo("Sobriety: Thrifty Motion Sensor");
+    assertThat(thriftyMotionSensorRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
+    assertThat(thriftyMotionSensorRule.type()).isEqualTo(RuleType.CODE_SMELL);
+
+    Rule brightnessOverrideRule = repository.rule("ESOB002");
+    assertThat(brightnessOverrideRule).isNotNull();
+    assertThat(brightnessOverrideRule.name()).isEqualTo("Sobriety: Brightness Override");
+    assertThat(brightnessOverrideRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
+    assertThat(brightnessOverrideRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
     Rule thriftyGeolocationMinTimeRule = repository.rule("ESOB005");
     assertThat(thriftyGeolocationMinTimeRule).isNotNull();
@@ -197,12 +203,6 @@ public class JavaRulesDefinitionTest {
     assertThat(thriftyNotification.name()).isEqualTo("Sobriety: Thrifty Notification");
     assertThat(thriftyNotification.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
     assertThat(thriftyNotification.type()).isEqualTo(RuleType.CODE_SMELL);
-
-    Rule chargeAwarenessRule = repository.rule("EPOW004");
-    assertThat(chargeAwarenessRule).isNotNull();
-    assertThat(chargeAwarenessRule.name()).isEqualTo("Power: Charge Awareness");
-    assertThat(chargeAwarenessRule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
-    assertThat(chargeAwarenessRule.type()).isEqualTo(RuleType.CODE_SMELL);
 
   }
 
