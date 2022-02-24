@@ -24,8 +24,6 @@ import io.ecocode.java.checks.helpers.ArgumentComplexTypeSubscriptionVisitor;
 import org.sonar.plugins.java.api.semantic.MethodMatchers;
 import org.sonar.plugins.java.api.tree.*;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,20 +36,20 @@ public abstract class ArgumentValueOnMethodCheck extends ArgumentComplexTypeSubs
     /**
      * Constructor to configure the rule on a given class and method.
      *
-     * @param methodName          name of the method to check
-     * @param methodOwnerType     name of the type that own the method
-     * @param constantValueToCheck        the current value to check
-     * @param paramPositions      the position(s) of the argument on the method to check
+     * @param methodName           name of the method to check
+     * @param methodOwnerType      name of the type that own the method
+     * @param constantValueToCheck the current value to check
+     * @param paramPositions       the position(s) of the argument on the method to check
      */
     protected ArgumentValueOnMethodCheck(String methodName, String methodOwnerType, Object constantValueToCheck, int... paramPositions) {
         super();
-        this.methodsSpecs = new MethodSpecs[] {new MethodSpecs(methodName, methodOwnerType, constantValueToCheck, paramPositions)};
+        this.methodsSpecs = new MethodSpecs[]{new MethodSpecs(methodName, methodOwnerType, constantValueToCheck, paramPositions)};
     }
 
     /**
      * Constructor to configure the rule on a given class and method.
      *
-     * @param methodsSpecs        array of methods specs to check.
+     * @param methodsSpecs array of methods specs to check.
      */
     protected ArgumentValueOnMethodCheck(MethodSpecs[] methodsSpecs) {
         super();
