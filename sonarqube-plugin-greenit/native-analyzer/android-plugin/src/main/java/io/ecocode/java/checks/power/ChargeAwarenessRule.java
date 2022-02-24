@@ -43,8 +43,9 @@ public class ChargeAwarenessRule extends IssuableSubscriptionVisitor {
     private static final String ACTION_POWER_BATTERY_LOW = "android.intent.action.BATTERY_LOW";
     private static final String ACTION_POWER_BATTERY_OKAY = "android.intent.action.BATTERY_OKAY";
     private static final String INFO_MESSAGE = "Monitoring power changes and customizing behavior depending on battery level is a good practice.";
-    private MethodMatchers addActionMatcher = MethodMatchers.create().ofTypes("android.content.IntentFilter").names("addAction").withAnyParameters().build();
-    private MethodMatchers createIntentFilterMatcher = MethodMatchers.create().ofTypes("android.content.IntentFilter").names("create").withAnyParameters().build();
+    private final MethodMatchers addActionOrIntentFilterMatcher = MethodMatchers.or(
+            MethodMatchers.create().ofTypes("android.content.IntentFilter").names("addAction").withAnyParameters().build(),
+            MethodMatchers.create().ofTypes("android.content.IntentFilter").names("create").withAnyParameters().build());
 
     @Override
     public List<Tree.Kind> nodesToVisit() {
@@ -63,7 +64,7 @@ public class ChargeAwarenessRule extends IssuableSubscriptionVisitor {
             }
             if (tree.is(Tree.Kind.METHOD_INVOCATION)) {
                 MethodInvocationTree mit = (MethodInvocationTree) tree;
-                if (addActionMatcher.matches(mit) || createIntentFilterMatcher.matches(mit)){
+                if (addActionOrIntentFilterMatcher.matches(mit)) {
                     checkParameter(mit.arguments());
                 }
             }
@@ -74,14 +75,14 @@ public class ChargeAwarenessRule extends IssuableSubscriptionVisitor {
 
     private void checkParameter(Arguments arguments) {
         if (!arguments.isEmpty()) {
-            if (arguments.get(0).symbolType().toString().equals("String")) {
-                if (arguments.get(0).asConstant().isPresent()
-                        && ((arguments.get(0).asConstant().get()).equals(ACTION_POWER_CONNECTED)
-                        || (arguments.get(0).asConstant().get()).equals(ACTION_POWER_DISCONNECTED)
-                        || (arguments.get(0).asConstant().get()).equals(ACTION_POWER_BATTERY_OKAY)
-                        || (arguments.get(0).asConstant().get()).equals(ACTION_POWER_BATTERY_LOW))) {
-                    reportIssue(arguments.get(0), INFO_MESSAGE);
-                }
+            ExpressionTree firstArgument = arguments.get(0);
+            if (firstArgument.symbolType().toString().equals("String")
+                    && firstArgument.asConstant().isPresent()
+                    && ((firstArgument.asConstant().get()).equals(ACTION_POWER_CONNECTED)
+                    || (firstArgument.asConstant().get()).equals(ACTION_POWER_DISCONNECTED)
+                    || (firstArgument.asConstant().get()).equals(ACTION_POWER_BATTERY_OKAY)
+                    || (firstArgument.asConstant().get()).equals(ACTION_POWER_BATTERY_LOW))) {
+                reportIssue(firstArgument, INFO_MESSAGE);
             }
         }
     }

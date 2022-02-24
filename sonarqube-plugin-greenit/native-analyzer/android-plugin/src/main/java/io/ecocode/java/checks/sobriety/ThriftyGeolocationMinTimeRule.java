@@ -43,9 +43,9 @@ public class ThriftyGeolocationMinTimeRule extends IssuableSubscriptionVisitor {
 
     private static final String ERROR_MESSAGE = "Location updates should be done with a time greater than 0.";
     private static final Logger LOG = Loggers.get(ThriftyGeolocationMinTimeRule.class);
-    private MethodMatchers methodMatcher = MethodMatchers.create().ofTypes("android.location.LocationManager").names("requestLocationUpdates").withAnyParameters().addParametersMatcher().build();
+    private final MethodMatchers methodMatcher = MethodMatchers.create().ofTypes("android.location.LocationManager").names("requestLocationUpdates").withAnyParameters().addParametersMatcher().build();
     private final ArrayList<Tree> treesToReport = new ArrayList<>();
-    private int ARGUMENT_VALUE_TO_CONTROL = 0;
+    private final static int ARGUMENT_VALUE_TO_CONTROL = 0;
 
     @Override
     public List<Tree.Kind> nodesToVisit() {

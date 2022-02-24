@@ -43,7 +43,7 @@ public class ThriftyGeolocationMinDistanceRule extends IssuableSubscriptionVisit
     private static final String ERROR_MESSAGE = "Location updates should be done with a distance interval greater than 0.";
     private static final Logger LOG = Loggers.get(ThriftyGeolocationMinDistanceRule.class);
 
-    private MethodMatchers methodMatcher = MethodMatchers.create().ofTypes("android.location.LocationManager").names("requestLocationUpdates").withAnyParameters().addParametersMatcher().build();
+    private final MethodMatchers methodMatcher = MethodMatchers.create().ofTypes("android.location.LocationManager").names("requestLocationUpdates").withAnyParameters().addParametersMatcher().build();
     private final ArrayList<Tree> treesToReport = new ArrayList<>();
     private static final int ARGUMENT_VALUE_TO_CONTROL = 0;
 
