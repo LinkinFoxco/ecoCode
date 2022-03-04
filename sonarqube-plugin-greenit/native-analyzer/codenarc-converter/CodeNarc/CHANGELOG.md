@@ -1,3 +1,7 @@
+
+#TODO: Sort the following line into the file
+- FatApp rule (ecocode) - //TODO
+
 <!-- markdownlint-disable MD003 MD004 MD007 MD032 -->
 # CodeNarc Change Log
 

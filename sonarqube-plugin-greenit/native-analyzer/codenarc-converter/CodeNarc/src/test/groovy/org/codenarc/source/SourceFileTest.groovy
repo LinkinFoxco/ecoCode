@@ -33,6 +33,14 @@ class SourceFileTest extends AbstractTestCase {
     private sourceFile
     private file
 
+    @Before
+    void prepareSampleFile() {
+        // IDEA messes with the SampleFile and therefor test results
+        FileWriter fileWriter = new FileWriter(FILE)
+        fileWriter.write('class SampleFile {\n\n}\n')
+        fileWriter.close()
+    }
+
     @Test
     void testImplementsSourceCode() {
         assert sourceFile instanceof SourceCode

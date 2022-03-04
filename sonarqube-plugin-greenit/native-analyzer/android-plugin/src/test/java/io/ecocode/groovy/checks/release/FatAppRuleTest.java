@@ -53,49 +53,49 @@ public class FatAppRuleTest {
   public void setUp() throws Exception {
     sensorContextTester = SensorContextTester.create(temp.newFolder());
     sensorContextTester.fileSystem().setWorkDir(temp.newFolder().toPath());
-
     sensorContextTester.setSettings(settings);
   }
 
   @Test
   public void should_run_code_narc_FatApp() throws IOException {
 
-//    addFileWithContent(
-//            "src/sample.groovy",
-//            "android {\n" +
-//            "                compileSdk 32\n" +
-//            "            \n" +
-//            "                defaultConfig {\n" +
-//            "                    applicationId \"com.example.sampleForSonar\"\n" +
-//            "                    minSdk 28\n" +
-//            "                    targetSdk 32\n" +
-//            "                    versionCode 1\n" +
-//            "                    versionName \"1.0\"\n" +
-//            "                    multiDexEnabled true\n" +
-//            "            \n" +
-//            "                    testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n" +
-//            "                }\n" +
-//            "            \n" +
-//            "                buildTypes {\n" +
-//            "                    release {\n" +
-//            "                        minifyEnabled false\n" +
-//            "                        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n" +
-//            "                    }\n" +
-//            "                }\n" +
-//            "                compileOptions {\n" +
-//            "                    sourceCompatibility JavaVersion.VERSION_1_8\n" +
-//            "                    targetCompatibility JavaVersion.VERSION_1_8\n" +
-//            "                }\n" +
-//            "                buildFeatures {\n" +
-//            "                    viewBinding true\n" +
-//            "                }\n" +
-//            "            }"
-//    );
-    addFileWithContent("src/sample.groovy","package source\nclass SourceFile1 {\n}");
+    addFileWithContent(
+            "src/sample.groovy",
+            "android {\n" +
+            "                compileSdk 32\n" +
+            "            \n" +
+            "                defaultConfig {\n" +
+            "                    applicationId \"com.example.sampleForSonar\"\n" +
+            "                    minSdk 28\n" +
+            "                    targetSdk 32\n" +
+            "                    versionCode 1\n" +
+            "                    versionName \"1.0\"\n" +
+            "                    multiDexEnabled true\n" +
+            "            \n" +
+            "                    testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n" +
+            "                }\n" +
+            "            \n" +
+            "                buildTypes {\n" +
+            "                    release {\n" +
+            "                        minifyEnabled false\n" +
+            "                        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n" +
+            "                    }\n" +
+            "                }\n" +
+            "                compileOptions {\n" +
+            "                    sourceCompatibility JavaVersion.VERSION_1_8\n" +
+            "                    targetCompatibility JavaVersion.VERSION_1_8\n" +
+            "                }\n" +
+            "                buildFeatures {\n" +
+            "                    viewBinding true\n" +
+            "                }\n" +
+            "            }"
+    );
+    addFileWithContent("src/sample2.groovy","package source\nclass SourceFile1 {\n}");
+    addFileWithContent("src/sample3.groovy","defaultConfig {multiDexEnabled true}");
 
     ActiveRulesBuilderWrapper activeRulesBuilder =
             new ActiveRulesBuilderWrapper()
-                    .addRule("org.codenarc.rule.basic.FatAppRule")
+                    .addRule("org.codenarc.rule.ecocode.FatAppRule")
                     .setInternalKey("FatApp");
     sensorContextTester.setActiveRules(activeRulesBuilder.build());
 
@@ -105,27 +105,7 @@ public class FatAppRuleTest {
                     new GroovyFileSystem(sensorContextTester.fileSystem()));
     sensor.execute(sensorContextTester);
 
-    assertThat(sensorContextTester.allIssues()).hasSize(0);
-  }
-
-  @Test
-  public void should_run_code_narc() throws IOException {
-
-    addFileWithContent("src/sample.groovy", "package source\nclass SourceFile1 {\n}");
-
-    ActiveRulesBuilderWrapper activeRulesBuilder =
-            new ActiveRulesBuilderWrapper()
-                    .addRule("org.codenarc.rule.basic.EmptyClassRule")
-                    .setInternalKey("EmptyClass");
-    sensorContextTester.setActiveRules(activeRulesBuilder.build());
-
-    CodeNarcSensor sensor =
-            new CodeNarcSensor(
-                    sensorContextTester.activeRules(),
-                    new GroovyFileSystem(sensorContextTester.fileSystem()));
-    sensor.execute(sensorContextTester);
-
-    assertThat(sensorContextTester.allIssues()).hasSize(1);
+    assertThat(sensorContextTester.allIssues()).hasSize(2);
   }
 
   private void addFileWithContent(String path, String content) {

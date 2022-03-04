@@ -132,6 +132,7 @@ ruleset {
     ExplicitStackInstantiation 
     ExplicitTreeSetInstantiation 
     FactoryMethodName
+    FatApp
     FieldName 
     FieldTypeRequired 
     FileCreateTempFile 

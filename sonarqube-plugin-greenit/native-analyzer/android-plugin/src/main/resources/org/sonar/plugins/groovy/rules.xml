@@ -2762,7 +2762,7 @@ Also checks if an explicit <code>it</code> parameter has been specified.</p>
 </ul>
 <p>Example of violations:</p>
 <pre><code>    boolean example() { true }          // violation
-     
+
     protected int longerExample() {
         if (baseName == null) {
             return 0
@@ -3633,7 +3633,7 @@ for (int i = 0; i * 100; ++i) {
 
         private Optional&lt;List&gt; getList() { }                    // violation
         Optional&lt;ArrayList&lt;String&gt;&gt; getArrayList() { }          // violation
-        
+
         protected Optional&lt;Set&lt;BigDecimal&gt;&gt; getSet() { }        // violation
         Optional&lt;HashSet&lt;Boolean&gt;&gt; getHashSet() { }             // violation
 
@@ -4024,6 +4024,48 @@ annotation.</p>
       <description><![CDATA[The delimiter char for "ignoreStrings".]]></description>
       <defaultValue>, (comma)</defaultValue>
     </param>
+  </rule>
+
+  <!-- ecocode rules -->
+
+  <!-- since 2.2.1 -->
+  <rule>
+    <key>org.codenarc.rule.ecocode.FatAppRule</key>
+    <severity>MINOR</severity>
+    <name><![CDATA[Fat App]]></name>
+    <internalKey><![CDATA[FatApp]]></internalKey>
+    <description><![CDATA[<p>Using &quot;multiDexEnabled true&quot; goes against the overall reduction of the weight of the apps and hence must be avoided.</p>
+<p>Example of violations:</p>
+<pre><code>    android {
+        compileSdk 32
+
+        defaultConfig {
+            applicationId &quot;com.example.sampleForSonar&quot;
+            minSdk 28
+            targetSdk 32
+            versionCode 1
+            versionName &quot;1.0&quot;
+
+            testInstrumentationRunner &quot;androidx.test.runner.AndroidJUnitRunner&quot;
+        }
+
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            }
+        }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+        buildFeatures {
+            viewBinding true
+        }
+    }
+</code></pre>
+]]></description>
+    <tag>code-smell</tag>
   </rule>
 
   <!-- enhanced rules -->
@@ -4976,7 +5018,7 @@ applyToFilesMatching and doNotApplyToFilesMatching.</p>
         // No violations for field declarations preceded by a comment
         @Delegate
         AutoCloseable stream
-        
+
         String publicField                  // violation
         @PackageScope
         String packageScopedField
@@ -4996,10 +5038,10 @@ applyToFilesMatching and doNotApplyToFilesMatching.</p>
 for parameter list.</p>
 <p>Examples of violations:</p>
 <pre><code>    class ClassWithWhitespaceInConstructorDeclaration {
-        
+
         ClassWithWhitespaceInConstructorDeclaration () { //violation
         }
-        
+
         void methodWithWhitespaceInDeclaration () { //violation
         }
     }
@@ -5018,11 +5060,11 @@ for parameter list.</p>
 is at most one space after the method name if the call does not contain parenthesis.</p>
 <p>Examples of violations:</p>
 <pre><code>    aMethod (&quot;arg&quot;) //violation
-    
+
     aMethod  &quot;arg&quot; //violation
-    
+
     throw new Exception () //violation
-    
+
 </code></pre>
 ]]></description>
     <tag>convention</tag>
@@ -5147,7 +5189,7 @@ null-safe operator (?.) does not cause a violation.</p>
     <description><![CDATA[<p>Check that there are no whitespace characters directly after the not (!) operator.</p>
 <p>Examples of violations:</p>
 <pre><code>    def negatedValue = ! value //violation
-    
+
     if (! items.empty()) { println &quot;not empty&quot; } //violataion
 </code></pre>
 ]]></description>
@@ -5480,7 +5522,7 @@ brace ([), or a dollar sign ($) within a GString does not cause a violation.</p>
     if(running ) { }                        // violation
     if(      x &lt; calculateLastIndex(        // violation
             'name') + 1    ) { }            // violation
-            
+
     for(    String name: filterNames(       // violation
             names)   ) { }                  // violation
 
@@ -5489,12 +5531,12 @@ brace ([), or a dollar sign ($) within a GString does not cause a violation.</p>
     println (3 + ( 4 * 7 )+7) + (   5 * 1 ) // violations
     def v =  (y - 7 )*( x + (z - 3))        // violations
     def v2 =  (y - 7 ) *                    // violation
-        (x + 
+        (x +
         ( z - 3)                            // violation
         )
     def v3 = calc(a) + calc( a + ( b - 1) * 2) + calc(7)  // violation
     def v4 = (a ) ? (17) : (19 )            // violation
-    
+
     void doStuff( int n) { }                // violation
 </code></pre>
 ]]></description>
@@ -5872,12 +5914,12 @@ It requires <strong>CodeNarc</strong> to have the application classes being anal
     }
 
     class PersonService {
-        
+
         Person createPerson(String firstName, String lastName) {
             Person person = new Person(firstName: firstName, lastName: lastName)
             return person.save()
         }
-    
+
     }
 </code></pre>
 <p>Example of valid configuration:</p>
@@ -5894,12 +5936,12 @@ It requires <strong>CodeNarc</strong> to have the application classes being anal
     class PersonService {
 
         PersonDataService personDataService
-        
+
         Person createPerson(String firstName, String lastName) {
             Person person = new Person(firstName: firstName, lastName: lastName)
             return personDataService.save(person)
         }
-    
+
     }
 </code></pre>
 <p>See <a href="https://gorm.grails.org/latest/hibernate/manual/index.html#dataServices">GORM Data Services</a></p>
@@ -6311,7 +6353,7 @@ you're only assigning the last element.</p>
     class MyClass {
         def a, b, c = [1, 2, 3]  // bad, a and b are null
     }
-    
+
     def x = 1              // ok
     def (f, g) = [1, 2]    // ok
     (a, b, c) = [1, 2, 3]  // ok
@@ -6660,12 +6702,12 @@ or static final field value, then it is cleaner to provide a Groovy property for
         static final VALUE = 'value'
 
         String getSomething() {         // violation
-            'something'         
+            'something'
         }
 
         @Override
         String getSomethingElse() {     // violation
-            VALUE       
+            VALUE
         }
 
         int getOtherValue() {           // violation

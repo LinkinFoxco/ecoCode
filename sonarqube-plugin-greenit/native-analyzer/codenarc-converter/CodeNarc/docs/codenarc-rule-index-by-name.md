@@ -134,6 +134,7 @@ title: CodeNarc - Rule Index by Name
   * [ExplicitStackInstantiation](./codenarc-rules-groovyism.html#explicitstackinstantiation-rule)  
   * [ExplicitTreeSetInstantiation](./codenarc-rules-groovyism.html#explicittreesetinstantiation-rule)  
   * [FactoryMethodName](./codenarc-rules-naming.html#factorymethodname-rule)  
+  * [FatApp](./codenarc-rules-ecocode.html#fatapp-rule)
   * [FieldName](./codenarc-rules-naming.html#fieldname-rule)  
   * [FieldTypeRequired](./codenarc-rules-convention.html#fieldtyperequired-rule)  
   * [FileCreateTempFile](./codenarc-rules-security.html#filecreatetempfile-rule)  

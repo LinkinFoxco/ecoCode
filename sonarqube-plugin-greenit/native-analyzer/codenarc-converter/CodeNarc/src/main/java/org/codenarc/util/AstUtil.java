@@ -17,6 +17,7 @@ package org.codenarc.util;
 
 import static java.util.Arrays.*;
 
+import com.sun.org.apache.bcel.internal.Const;
 import groovy.lang.Closure;
 import groovy.lang.MetaClass;
 import groovy.lang.Range;
@@ -1327,5 +1328,22 @@ public class AstUtil {
         return sourceCode.getLines().get(AstUtil.findFirstNonAnnotationLine(node, sourceCode) - 1);
     }
 
+    public static List<Object> getArgumentsValue(Expression expression) {
+        if (expression instanceof ArgumentListExpression) {
+            ArrayList<Object> values = new ArrayList<>();
+            for (Expression expr : ((ArgumentListExpression) expression).getExpressions()) {
+                values.add(getArgumentValue(expr));
+            }
+            return values;
+        } else return null;
+    }
+
+    private static Object getArgumentValue(Expression expression) {
+        if (expression instanceof VariableExpression) {
+            return expression.getText();
+        } else if (expression instanceof ConstantExpression) {
+            return ((ConstantExpression) expression).getValue();
+        } else return null;
+    }
 
 }

@@ -27,10 +27,11 @@
     </description>
 
 	<modules>
-		<module>java-plugin</module>
-		<module>php-plugin</module>
-		<module>python-plugin</module>
+<!--		<module>java-plugin</module>-->
+<!--		<module>php-plugin</module>-->
+<!--		<module>python-plugin</module>-->
 		<module>android-plugin</module>
+		<module>codenarc-converter</module>
 	</modules>
 
 
@@ -155,5 +156,5 @@
 
 		</dependencies>
 	</dependencyManagement>
-	
+
 </project>

@@ -166,6 +166,9 @@ title: CodeNarc - Rule Index
   * [DuplicateNumberLiteral](./codenarc-rules-dry.html#duplicatenumberliteral-rule)  
   * [DuplicateStringLiteral](./codenarc-rules-dry.html#duplicatestringliteral-rule)  
 
+## [Ecocode](./codenarc-rules-ecocode.html)
+* [FatApp](./codenarc-rules-ecocode.html#fatapp-rule)
+
 ## [Enhanced](./codenarc-rules-enhanced.html)
   * [CloneWithoutCloneable](./codenarc-rules-enhanced.html#clonewithoutcloneable-rule)  
   * [JUnitAssertEqualsConstantActualValue](./codenarc-rules-enhanced.html#junitassertequalsconstantactualvalue-rule)  
