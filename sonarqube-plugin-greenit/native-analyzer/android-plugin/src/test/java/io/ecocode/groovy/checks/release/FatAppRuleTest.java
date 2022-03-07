@@ -66,8 +66,8 @@ public class FatAppRuleTest {
             "            \n" +
             "                defaultConfig {\n" +
             "                    applicationId \"com.example.sampleForSonar\"\n" +
-            "                    minSdk 28\n" +
-            "                    targetSdk 32\n" +
+            "                    minSdkVersion 28\n" +
+            "                    targetSdkVersion 32\n" +
             "                    versionCode 1\n" +
             "                    versionName \"1.0\"\n" +
             "                    multiDexEnabled true\n" +

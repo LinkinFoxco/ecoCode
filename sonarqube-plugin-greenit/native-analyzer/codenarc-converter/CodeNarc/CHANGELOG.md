@@ -1,5 +1,9 @@
 
 #TODO: Sort the following line into the file
+- SupportedVersionRange rule (ecocode) - When looking at the minSdkVersion and targetSdkVersion attributes for the <uses-sdk> in the AndroidManifest.xml file, the amplitude of supported platform versions should not be too wide, at the risk of making the app too heavy to handle all cases. It is worth notice that this smell may contradicts with the Aging devices social smell.
+
+
+#TODO: Sort the following line into the file
 - FatApp rule (ecocode) - //TODO
 
 <!-- markdownlint-disable MD003 MD004 MD007 MD032 -->

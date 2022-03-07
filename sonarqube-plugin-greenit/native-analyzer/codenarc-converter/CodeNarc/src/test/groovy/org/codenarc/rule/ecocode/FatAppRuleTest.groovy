@@ -39,8 +39,8 @@ class FatAppRuleTest extends AbstractRuleTestCase<FatAppRule> {
 
                 defaultConfig {
                     applicationId "com.example.sampleForSonar"
-                    minSdk 28
-                    targetSdk 32
+                    minSdkVersion 28
+                    targetSdkVersion 32
                     versionCode 1
                     versionName "1.0"
 
@@ -73,8 +73,8 @@ class FatAppRuleTest extends AbstractRuleTestCase<FatAppRule> {
 
                 defaultConfig {
                     applicationId "com.example.sampleForSonar"
-                    minSdk 28
-                    targetSdk 32
+                    minSdkVersionVersionVersion 28
+                    targetSdkVersionVersionVersion 32
                     versionCode 1
                     versionName "1.0"
                     multiDexEnabled true
@@ -109,8 +109,8 @@ class FatAppRuleTest extends AbstractRuleTestCase<FatAppRule> {
 
                 defaultConfig {
                     applicationId "com.example.sampleForSonar"
-                    minSdk 28
-                    targetSdk 32
+                    minSdkVersionVersion 28
+                    targetSdkVersionVersion 32
                     versionCode 1
                     versionName "1.0"
                     multiDexEnabled multidex
@@ -144,8 +144,8 @@ class FatAppRuleTest extends AbstractRuleTestCase<FatAppRule> {
 
                 defaultConfig {
                     applicationId "com.example.sampleForSonar"
-                    minSdk 28
-                    targetSdk 32
+                    minSdkVersion 28
+                    targetSdkVersion 32
                     versionCode 1
                     versionName "1.0"
                     multiDexEnabled multidex
@@ -181,8 +181,8 @@ class FatAppRuleTest extends AbstractRuleTestCase<FatAppRule> {
 
                 defaultConfig {
                     applicationId "com.example.sampleForSonar"
-                    minSdk 28
-                    targetSdk 32
+                    minSdkVersion 28
+                    targetSdkVersion 32
                     versionCode 1
                     versionName "1.0"
                     multiDexEnabled multidex

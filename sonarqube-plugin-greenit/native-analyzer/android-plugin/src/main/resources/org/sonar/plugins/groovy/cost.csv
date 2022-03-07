@@ -147,6 +147,7 @@ org.codenarc.rule.dry.DuplicateMapLiteralRule;linear;5min
 org.codenarc.rule.dry.DuplicateNumberLiteralRule;linear;5min
 org.codenarc.rule.dry.DuplicateStringLiteralRule;linear;5min
 org.codenarc.rule.ecocode.FatAppRule;linear;1h
+org.codenarc.rule.ecocode.SupportedVersionRangeRule;linear;5min
 org.codenarc.rule.enhanced.MissingOverrideAnnotationRule;linear;5min
 org.codenarc.rule.exceptions.CatchArrayIndexOutOfBoundsExceptionRule;linear;10min
 org.codenarc.rule.exceptions.CatchErrorRule;linear;1h

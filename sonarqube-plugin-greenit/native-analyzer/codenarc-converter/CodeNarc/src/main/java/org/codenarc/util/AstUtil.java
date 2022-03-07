@@ -17,7 +17,6 @@ package org.codenarc.util;
 
 import static java.util.Arrays.*;
 
-import com.sun.org.apache.bcel.internal.Const;
 import groovy.lang.Closure;
 import groovy.lang.MetaClass;
 import groovy.lang.Range;

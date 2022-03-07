@@ -40,25 +40,23 @@ class FatAppAstVisitor extends AbstractAstVisitor {
 
     @Override
     void visitMethodCallExpression(MethodCallExpression methodCallExpression) {
-//        if (methodCallExpression.getMethod().getProperties()['value'] == "multiDexEnabled" &&
-//                    methodCallExpression.getArguments().getProperties()['text'] == "(true)")
-//        if (((ConstantExpression) methodCallExpression.getMethod()).getValue() == 'multiDexEnabled' &&
-//                ((ConstantExpression) methodCallExpression.getArguments().expressions.first()).getValue() == true) {
-//            addViolation(methodCallExpression, 'Using \"multiDexEnabled true\" goes against the overall reduction of the weight of the apps and hence must be avoided.')
-//        }
         if (((ConstantExpression) methodCallExpression.getMethod()).getValue() == 'multiDexEnabled') {
             for (Object value : AstUtil.getArgumentsValue(methodCallExpression.getArguments())) {
                 if (value == true)
-                    addViolation(methodCallExpression, 'Using \"multiDexEnabled true\" goes against the overall reduction of the weight of the apps and hence must be avoided.')
+                    addViolation(methodCallExpression, getViolationMessage())
                 else { // TODO get value from variable at runtime
                     this.getSourceCode().getLines().each { string ->
                         if (string.contains(value + ' = true')) {
-                            addViolation(methodCallExpression, 'Using \"multiDexEnabled true\" goes against the overall reduction of the weight of the apps and hence must be avoided.')
+                            addViolation(methodCallExpression, getViolationMessage())
                         }
                     }
                 }
             }
         }
         super.visitMethodCallExpression(methodCallExpression)
+    }
+
+    private String getViolationMessage() {
+        return 'Using \"multiDexEnabled true\" goes against the overall reduction of the weight of the apps and hence must be avoided.'
     }
 }

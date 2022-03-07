@@ -19,8 +19,8 @@ Example of violations:
 
         defaultConfig {
             applicationId "com.example.sampleForSonar"
-            minSdk 28
-            targetSdk 32
+            minSdkVersion 28
+            targetSdkVersion 32
             versionCode 1
             versionName "1.0"
 
@@ -45,12 +45,38 @@ Example of violations:
 
 ## SupportedVersionRange Rule
 
-<Since CodeNarc 2.0.0>
+*Since CodeNarc 2.2.1*
 
 When looking at the minSdkVersion and targetSdkVersion attributes for the <uses-sdk> in the AndroidManifest.xml file, the amplitude of supported platform versions should not be too wide, at the risk of making the app too heavy to handle all cases. It is worth notice that this smell may contradicts with the Aging devices social smell.
 
 Example of violations:
 
 ```
-    // TODO: Add examples
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.example.sampleForSonar"
+        minSdkVersion 26
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
 ```
